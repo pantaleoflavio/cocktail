@@ -5,6 +5,7 @@ import Lottie from "react-lottie";
 import animationData from "../assets/animation/drink-animation.json";
 import { Link } from "react-router-dom";
 const HomeScreen = () => {
+  const [input, setInput] = useState('negroni');
   return (
   <>
     <Hero>
@@ -41,6 +42,34 @@ const HomeScreen = () => {
         </div>
       </div>
     </Hero>
+    <section className="container home-screen">
+      <div className="search-bar">
+          <div className="form-container">
+            <form>
+              <label htmlFor="drink">
+                <h4>Cerca il tuo Drink</h4>
+              </label>
+              <div className="input-search">
+                <input
+                id="drink"
+                className="input"
+                placeholder={input}
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                />
+                <button className="btn icon-btn" type="submit">
+                  <FaSearch className="icon" />
+                </button>
+                </div>
+            </form>
+          </div>
+          <div>
+            <p className="result">
+              3 risultati
+            </p>
+          </div>
+      </div>
+    </section>
   </>
   );
 };
