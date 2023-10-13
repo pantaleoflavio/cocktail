@@ -45,13 +45,15 @@ const AboutScreen = () => {
       }}
       ></div>
       <div className="about-team-content container">
-        <h3 className="brand-secondary-color">Our Team</h3>
-        {
-          teamCards.map((card) => {
-            return (
-            <Card key={card.title} {...card} className={"value-card"} />
-            );
-        })}
+        <h3 className="brand-secondary-color ">Our Team</h3>
+        <div className="card-section">
+          {
+            teamCards.map((card) => {
+              return (
+              <Card key={card.title} {...card} className={"value-card"}/>
+              );
+          })}
+        </div>
       </div>
     </section>
   </>
