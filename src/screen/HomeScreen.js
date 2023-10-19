@@ -4,8 +4,15 @@ import { FaSearch } from "react-icons/fa";
 import Lottie from "react-lottie";
 import animationData from "../assets/animation/drink-animation.json";
 import { Link } from "react-router-dom";
+import { useGlobalContext } from "../context";
 const HomeScreen = () => {
-  const [input, setInput] = useState('negroni');
+  const {query, isLoading, data, isError, count, searchCocktail} = useGlobalContext();
+  const [input, setInput] = useState(query);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    searchCocktail(input);
+  }
   return (
   <>
     <Hero>
@@ -43,33 +50,36 @@ const HomeScreen = () => {
       </div>
     </Hero>
     <section className="container home-screen">
-      <div className="search-bar">
+        <div className="search-bar">
           <div className="form-container">
-            <form>
+            <form onSubmit={handleSubmit}>
               <label htmlFor="drink">
-                <h4>Cerca il tuo Drink</h4>
+                <h4>Cerca il tuo drink</h4>
               </label>
               <div className="input-search">
                 <input
-                id="drink"
-                className="input"
-                placeholder={input}
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
+                  id="drink"
+                  className="input"
+                  placeholder={query}
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
                 />
                 <button className="btn icon-btn" type="submit">
                   <FaSearch className="icon" />
                 </button>
-                </div>
+              </div>
             </form>
           </div>
-          <div>
-            <p className="result">
-              3 risultati
-            </p>
-          </div>
-      </div>
-    </section>
+          <p className="result">{count} risultati</p>
+        </div>
+        {!isLoading && isError ? (
+          <ErrorMessage>Nessun Cocktail Trovato</ErrorMessage>
+        ) : !isLoading && !isError ? (
+          <Cocktails data={data.drinks} />
+        ) : (
+          <Loading />
+        )}
+      </section>
   </>
   );
 };
