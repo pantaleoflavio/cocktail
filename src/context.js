@@ -7,6 +7,7 @@ const AppProvider = ({children}) => {
 
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const [query, setQuery] = useState('negroni');
+    const [scrollPosition, setScrollPosition] = useState(0);
     const {isLoading, data, isError, count} = useFetch(`s=${query}`);
     const openSidebar = () => {
         setIsSidebarOpen(true);
@@ -20,6 +21,14 @@ const AppProvider = ({children}) => {
         setQuery(input);
     }
 
+    const getScrollPosition = (value) => {
+        setScrollPosition(value);
+    }
+
+    const deleteScrollPosition = (value) => {
+        setScrollPosition(0);
+    }
+
     return <AppContext.Provider value={{
         isSidebarOpen,
         openSidebar,
@@ -30,6 +39,9 @@ const AppProvider = ({children}) => {
         isError,
         count,
         searchCocktail,
+        scrollPosition,
+        getScrollPosition,
+        deleteScrollPosition
         }}>
         {children}
     </AppContext.Provider>

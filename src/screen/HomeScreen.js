@@ -5,14 +5,32 @@ import Lottie from "react-lottie";
 import animationData from "../assets/animation/drink-animation.json";
 import { Link } from "react-router-dom";
 import { useGlobalContext } from "../context";
+import useFetch from "../useFetch";
 const HomeScreen = () => {
-  const {query, isLoading, data, isError, count, searchCocktail} = useGlobalContext();
+  const {
+    query,
+    isLoading,
+    data,
+    isError,
+    count,
+    searchCocktail,
+    deleteScrollPosition,
+    scrollPosition
+  } = useGlobalContext();
   const [input, setInput] = useState(query);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     searchCocktail(input);
-  }
+  };
+
+  useEffect(() => {
+    if (scrollPosition) {
+      window.scrollTo(0, scrollPosition);
+      deleteScrollPosition();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
   <>
     <Hero>
@@ -71,7 +89,7 @@ const HomeScreen = () => {
             </form>
           </div>
           <p className="result">{count} risultati</p>
-        </div>
+        
         {!isLoading && isError ? (
           <ErrorMessage>Nessun Cocktail Trovato</ErrorMessage>
         ) : !isLoading && !isError ? (
@@ -79,6 +97,7 @@ const HomeScreen = () => {
         ) : (
           <Loading />
         )}
+        </div>
       </section>
   </>
   );

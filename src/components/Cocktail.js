@@ -2,9 +2,17 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { HiClipboardList } from "react-icons/hi";
+import { useGlobalContext } from "../context";
 
-const Cocktail = ({ strDrinkThumb: img, idDrink: id, strDrink: name }) => {
+const Cocktail = ({ strDrinkThumb: img, idDrink: _id, strDrink: name }) => {
   const [show, setShow] = useState(false);
+  const { getScrollPosition } = useGlobalContext();
+  const navigate = useNavigate();
+
+  const goToCocktail = (_id) => {
+    getScrollPosition(window.scrollY);
+    navigate(`/cocktail/${_id}`);
+  }
 
   const showInfo = () => {
     setShow(true);
@@ -24,7 +32,9 @@ const Cocktail = ({ strDrinkThumb: img, idDrink: id, strDrink: name }) => {
     }}></div>
     <div className={ show ? `card-text container show-info` : `card-text-sm container`}>
       <h5>{name}</h5>
-      <div className='see-more-btn brand-color'>
+      <div className='see-more-btn brand-color'
+      onClick={() => goToCocktail(_id)}
+      >
         <h5>Ricetta</h5>
         <HiClipboardList className='icon ' />
       </div>
@@ -32,7 +42,9 @@ const Cocktail = ({ strDrinkThumb: img, idDrink: id, strDrink: name }) => {
 
     <div className='card-text-sm container'>
       <h5>{name}</h5>
-      <div className='see-more-btn brand-color'>
+      <div className='see-more-btn brand-color'
+      onClick={() => goToCocktail(_id)}
+      >
         <h5>Ricetta</h5>
         <HiClipboardList className='icon ' />
       </div>
