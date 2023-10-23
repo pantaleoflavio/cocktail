@@ -5,8 +5,9 @@ import Lottie from "react-lottie";
 import animationData from "../assets/animation/drink-animation.json";
 import { Link } from "react-router-dom";
 import { useGlobalContext } from "../context";
-import useFetch from "../useFetch";
+import useTitle from "../useTitle";
 const HomeScreen = () => {
+  useTitle('Home');
   const {
     query,
     isLoading,
@@ -45,7 +46,7 @@ const HomeScreen = () => {
             </h4>
           </div>
           <p>
-            Wiki Drink è un database internazionale che mette a tua disposizione, in maniera <span className="brand-color">Gratuita</span>Gratuita, le ricette dei più importanti e diffusi cocktail al mondo.
+            Wiki Drink è un database internazionale che mette a tua disposizione, in maniera <span className="brand-color">Gratuita</span>, le ricette dei più importanti e diffusi cocktail al mondo.
           </p>
           <Link to="/about" className="btn btn-primary">
             Scopri di piu

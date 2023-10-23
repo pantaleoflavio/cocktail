@@ -4,11 +4,13 @@ import { Loading, ErrorMessage } from "../components";
 import { useParams, Link } from "react-router-dom";
 import { IoArrowBackCircleSharp } from "react-icons/io5";
 import styled from "styled-components";
+import useTitle from "../useTitle";
 
 const SingleCocktailScreen = () => {
   const { id } = useParams();
   const { data, isLoading, isError } = useFetch(`i=${id}`, true);
 
+  useTitle(data && data.drinks ? data.drinks[0].strDrink : 'not found');
   if (isLoading) {
     return (
       <Wrapper>

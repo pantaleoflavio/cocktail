@@ -26,7 +26,7 @@ export const teamCards = [
   {
     title: "Dennis Rodman",
     img:
-      "https://sportnews.snai.it/wp-content/uploads/2020/05/GettyImages-625824450.jpg",
+      "https://i0.web.de/image/836/37860836,pd=1/dennis-rodman.jpg",
     subtitle: "CEO & Founder",
   },
   {
