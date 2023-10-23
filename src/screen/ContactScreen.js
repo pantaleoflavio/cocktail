@@ -13,7 +13,7 @@ const ContactScreen = () => {
               Vorresti Aggiungere un Cocktail?
             </h3>
             <h4 className="contact-subtitle">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam suscipit enim pulvinar, vestibulum est sit amet, maximus massa. Cras maximus ex ut tempus ullamcorper. Praesent nec risus et nisl posuere commodo. Praesent mollis mauris nec diam lacinia vestibulum. Pellentesque ullamcorper eleifend eros a bibendum.
+            Il nostro team è sempre disponibile per valutare possibili nuove ricette ed ad aggiungerle alla nostro database
             </h4>
           </div>
         </div>
